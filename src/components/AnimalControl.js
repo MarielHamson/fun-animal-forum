@@ -14,11 +14,13 @@ class AnimalControl extends React.Component {
 
 	handleClick = () => {
 		const { dispatch } = this.props;
-		const action2 = a.selectPostToNull();
-		dispatch(action2);
-
-		const action = a.toggleForm();
-		dispatch(action);
+		if (this.props.selectedPost != null) {
+			const action2 = a.selectPostToNull();
+			dispatch(action2);
+		} else {
+			const action = a.toggleForm();
+			dispatch(action);
+		}
 	};
 
 	handleChangingSelectedPost = (id) => {
@@ -58,7 +60,7 @@ class AnimalControl extends React.Component {
 		let currentlyVisibleState = null;
 		let buttonText = null;
 		if (this.props.selectedPost !== null) {
-			currentlyVisibleState = <PostDetail post={this.props.selectedPost} />;
+			currentlyVisibleState = <PostDetail post={this.props.selectedPost} onClickingUpVote={this.handleUpVote} onClickingDownVote={this.handleDownVote} />;
 			buttonText = 'Return to post list';
 		} else if (this.props.formVisibleOnPage) {
 			currentlyVisibleState = (

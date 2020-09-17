@@ -7,9 +7,10 @@ import rootReducer from './reducers/index';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
-store.subscribe(() => console.log(store.getState()));
+//store.subscribe(() => console.log(store.getState()));
 
 ReactDOM.render(
 	<React.StrictMode>
